@@ -11,15 +11,12 @@ var burger = {
 		});
 	},
 	// cols and vals are arrays
-	insertOne: function (cols, vals, cb) {
-		orm.insertOne('burgers', cols, vals, function (res) {
-			cb(res);
-		});
+	insertOne: function (name, cb) {
+		orm.insertOne('burgers',['burger_name', 'devoured'], [name, false],	cb);
 	},
-	updateOne: function (objColVals, condition, cb) {
-		orm.updateOne('burgers', objColVals, condition, function (res) {
-			cb(res);
-		});
+	updateOne: function (id, cb) {
+		var condition = 'id=' + id;
+		orm.updateOne('burgers', {devoured: true}, condition, cb);
 	}
 };
 

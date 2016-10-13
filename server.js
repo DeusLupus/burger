@@ -9,7 +9,7 @@ var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(process.cwd() + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({
 	extended: false
@@ -24,6 +24,10 @@ app.set('view engine', 'handlebars');
 
 var routes = require('./controllers/burgers_controller.js');
 app.use('/', routes);
+app.use('/update', routes);
+app.use('/create', routes);
 
 var port = 3000;
 app.listen(port);
+
+console.log(module.exports);
